@@ -9,7 +9,7 @@ const blogPosts = [
     excerpt: 'A practical framework for assessing organizational data maturity and building trusted, intelligence-driven decision-making.',
     readTime: '9 min read',
     date: 'Feb 2026',
-    coverImage: '/images/ZFutures/The five stages of data maturity.png',
+    coverImage: '/ZFutures/The five stages of data maturity.png',
     external: true,
     url: 'https://medium.com/@zioniekamtambe/the-data-maturity-model-where-does-your-organization-stand-916fcfd1448d'
   }
