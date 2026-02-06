@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZFutures - Organizational Intelligence & Digital Transformation</title>
+    <meta name="description" content="Strategic consulting in digital transformation, data intelligence, and AI integration. We build the systems that help organizations operate with precision.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink: #0A0E27;
+            --ink-mid: #1A1F3A;
+            --ink-soft: #3D4965;
+            --ink-light: #64748B;
+            --accent: #2563EB;
+            --accent-hover: #1D4ED8;
+            --accent-wash: #EFF6FF;
+            --warm: #DC2626;
+            --warm-wash: #FEF2F2;
+            --success: #059669;
+            --surface: #FFFFFF;
+            --surface-raised: #F8FAFC;
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+        }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            height: 72px;
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 2rem; height: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-section {
+            cursor: pointer; display: flex; align-items: center;
+            gap: 0.875rem; text-decoration: none;
+        }
+        .logo-image { height: 40px; width: auto; }
+        .logo-text-container { display: flex; flex-direction: column; }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 800;
+            color: var(--ink); letter-spacing: -0.5px; line-height: 1;
+        }
+        .tagline {
+            font-size: 0.625rem; color: var(--ink-light);
+            font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex; gap: 0.25rem;
+            list-style: none; align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none; color: var(--ink-soft);
+            font-weight: 500; font-size: 0.9375rem;
+            padding: 0.5rem 1rem; border-radius: 8px;
+            transition: all 0.2s; cursor: pointer;
+        }
+        .nav-links a:hover { color: var(--ink); background: var(--surface-raised); }
+        .nav-links a.active { color: var(--accent); background: var(--accent-wash); font-weight: 600; }
+
+        .nav-cta {
+            background: var(--accent); color: white;
+            padding: 0.625rem 1.375rem; border-radius: 8px;
+            font-weight: 600; font-size: 0.875rem;
+            font-family: inherit; transition: all 0.2s;
+            cursor: pointer; border: none; margin-left: 0.75rem;
+        }
+        .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* Hero */
+        .hero {
+            margin-top: 72px;
+            min-height: calc(100vh - 72px);
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+            color: white;
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute;
+            top: -20%; right: -10%; width: 70%; height: 140%;
+            background: radial-gradient(ellipse at center, rgba(37,99,235,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative; z-index: 1; width: 100%;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.75rem; font-weight: 700;
+            margin-bottom: 1.75rem; line-height: 1.15; letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem; color: rgba(255,255,255,0.85);
+            margin-bottom: 2.5rem; font-weight: 400;
+            line-height: 1.8;
+        }
+        .hero-ctas { display: flex; gap: 1.25rem; justify-content: center; }
+
+        .btn-primary {
+            padding: 0.875rem 2rem; border-radius: 8px;
+            font-weight: 600; cursor: pointer; border: none;
+            font-size: 1rem; font-family: inherit;
+            transition: all 0.2s; background: white; color: var(--ink);
+        }
+        .btn-primary:hover {
+            background: #F0F4F8; transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        .btn-outline {
+            padding: 0.875rem 2rem; border-radius: 8px;
+            font-weight: 500; cursor: pointer; font-size: 1rem;
+            font-family: inherit; transition: all 0.2s;
+            background: transparent; color: rgba(255,255,255,0.9);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.7); color: white;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* Sections */
+        .section { padding: 6rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { max-width: 720px; margin: 0 auto 4rem; text-align: center; }
+        .section-label {
+            display: inline-block; font-size: 0.8125rem; font-weight: 700;
+            color: var(--accent); letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem; font-weight: 700;
+            margin-bottom: 1.25rem; letter-spacing: -0.5px; line-height: 1.2;
+            color: var(--ink);
+        }
+        .section-header p { 
+            font-size: 1.125rem; color: var(--ink-soft); line-height: 1.8; 
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 5rem; align-items: start;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem; font-weight: 700;
+            line-height: 1.2; margin-bottom: 1.75rem; letter-spacing: -0.5px;
+        }
+        .about-text p {
+            color: var(--ink-soft); line-height: 1.8;
+            margin-bottom: 1.5rem; font-size: 1.0625rem;
+        }
+        .about-pillars { display: flex; flex-direction: column; gap: 1rem; }
+        .pillar {
+            display: flex; align-items: flex-start; gap: 1.25rem;
+            padding: 1.5rem; background: var(--surface-raised);
+            border-radius: 12px; border: 1px solid var(--border-light);
+            transition: all 0.2s;
+        }
+        .pillar:hover { 
+            border-color: var(--accent); 
+            background: var(--accent-wash);
+            transform: translateY(-2px);
+        }
+        .pillar-icon {
+            width: 44px; height: 44px; min-width: 44px;
+            background: linear-gradient(135deg, var(--accent) 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 1.25rem;
+        }
+        .pillar h4 { 
+            font-size: 1.0625rem; font-weight: 600; 
+            margin-bottom: 0.375rem; color: var(--ink);
+        }
+        .pillar p { 
+            font-size: 0.9375rem; color: var(--ink-soft); 
+            line-height: 1.6; margin: 0; 
+        }
+
+        /* Program Cards */
+        .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .program-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 2.25rem; transition: all 0.25s; cursor: pointer;
+        }
+        .program-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 32px rgba(37,99,235,0.12);
+            transform: translateY(-4px);
+        }
+        .program-number {
+            font-size: 0.8125rem; font-weight: 700; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.125rem;
+        }
+        .program-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; margin-bottom: 0.625rem; font-weight: 700;
+            color: var(--ink);
+        }
+        .program-subtitle { 
+            font-size: 0.875rem; color: var(--warm); 
+            font-weight: 600; margin-bottom: 1rem; 
+        }
+        .program-card p { 
+            color: var(--ink-soft); line-height: 1.7; 
+            font-size: 1rem; margin-bottom: 1.5rem; 
+        }
+        .program-cta {
+            color: var(--accent); font-weight: 600; font-size: 0.9375rem;
+            text-decoration: none; display: inline-flex; align-items: center;
+            gap: 0.5rem; transition: gap 0.2s;
+        }
+        .program-card:hover .program-cta { gap: 0.875rem; }
+
+        /* Industries List */
+        .industries-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .industry-item {
+            padding: 1.25rem 1.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 10px;
+            font-weight: 500; font-size: 1rem; color: var(--ink);
+            transition: all 0.2s; cursor: pointer;
+            display: flex; align-items: center; gap: 0.875rem;
+        }
+        .industry-item:hover { 
+            border-color: var(--accent); 
+            background: var(--accent-wash);
+            transform: translateY(-2px);
+        }
+
+        /* CTA Banner */
+        .cta-banner { 
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+            color: white; padding: 5rem 2rem; text-align: center; 
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; font-weight: 700; 
+            margin-bottom: 1rem; letter-spacing: -0.5px;
+        }
+        .cta-banner p { 
+            font-size: 1.125rem; color: rgba(255,255,255,0.7); 
+            margin-bottom: 2.5rem; font-weight: 400; 
+        }
+
+        /* Page Hero */
+        .page-hero {
+            margin-top: 72px; padding: 4.5rem 2rem;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+            color: white; text-align: center;
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; font-weight: 700;
+            margin-bottom: 1rem; letter-spacing: -0.5px;
+        }
+        .page-hero p { 
+            font-size: 1.125rem; color: rgba(255,255,255,0.7); 
+            max-width: 640px; margin: 0 auto; font-weight: 400; 
+        }
+
+        /* Capability Sections */
+        .cap-section { padding: 5rem 2rem; }
+        .cap-section-inner { max-width: 880px; margin: 0 auto; }
+        .cap-number-badge { display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .cap-num {
+            width: 40px; height: 40px; background: var(--accent); color: white;
+            border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; font-size: 0.9375rem; font-weight: 700;
+        }
+        .cap-tag { 
+            font-size: 0.8125rem; font-weight: 700; color: var(--accent); 
+            text-transform: uppercase; letter-spacing: 1.5px; 
+        }
+        .cap-section-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: -0.5px; line-height: 1.2;
+            color: var(--ink);
+        }
+        .cap-section-inner > p { 
+            font-size: 1.125rem; color: var(--ink-soft); 
+            line-height: 1.8; margin-bottom: 2.5rem; 
+        }
+        .cap-delivers-label { 
+            font-size: 0.8125rem; font-weight: 700; color: var(--ink); 
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.25rem; 
+        }
+        .cap-delivers { list-style: none; padding: 0; }
+        .cap-delivers li {
+            padding: 1rem 0; border-bottom: 1px solid var(--border-light);
+            display: flex; align-items: flex-start; gap: 1rem;
+            font-size: 1rem; color: var(--ink-mid); line-height: 1.7;
+        }
+        .cap-delivers li:last-child { border-bottom: none; }
+        .deliver-arrow { 
+            color: var(--accent); font-weight: 700; 
+            font-size: 1.125rem; margin-top: 2px; flex-shrink: 0; 
+        }
+
+        /* Blog */
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .blog-post {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden; transition: all 0.25s; cursor: pointer;
+        }
+        .blog-post:hover { 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08); 
+            border-color: var(--accent); 
+            transform: translateY(-4px); 
+        }
+        .blog-image { 
+            height: 200px; display: flex; align-items: center; 
+            justify-content: center; font-size: 3.5rem; color: white; 
+        }
+        .blog-content { padding: 1.75rem; }
+        .blog-meta { 
+            display: flex; gap: 0.75rem; margin-bottom: 0.875rem; 
+            font-size: 0.8125rem; color: var(--ink-light); 
+            align-items: center; font-weight: 500;
+        }
+        .blog-category { 
+            text-transform: uppercase; letter-spacing: 1px; 
+            font-weight: 700; color: var(--accent); 
+        }
+        .blog-post h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.25rem; margin-bottom: 0.75rem; 
+            font-weight: 700; line-height: 1.4; color: var(--ink);
+        }
+        .blog-excerpt { 
+            color: var(--ink-soft); line-height: 1.7; 
+            margin-bottom: 1.25rem; font-size: 0.9375rem; 
+        }
+        .read-more { 
+            color: var(--accent); font-weight: 600; 
+            text-decoration: none; font-size: 0.9375rem; 
+            display: inline-flex; align-items: center; gap: 0.5rem; 
+        }
+
+        /* Insights/Resources */
+        .resource-card { 
+            border: 1px solid var(--border); border-radius: 12px; 
+            overflow: hidden; background: var(--surface); transition: all 0.25s; 
+        }
+        .resource-card:hover { 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08); 
+            border-color: var(--accent); 
+        }
+        .resource-card-image { 
+            height: 180px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-size: 3rem; 
+        }
+        .resource-card-body { padding: 1.75rem; }
+        .resource-card-body .tag { 
+            font-size: 0.8125rem; color: var(--ink-light); 
+            text-transform: uppercase; letter-spacing: 1px; 
+            font-weight: 700; margin-bottom: 0.75rem; 
+        }
+        .resource-card-body h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.25rem; margin-bottom: 0.75rem; 
+            font-weight: 700; color: var(--ink);
+        }
+        .resource-card-body p { 
+            color: var(--ink-soft); line-height: 1.7; 
+            margin-bottom: 1.25rem; font-size: 0.9375rem; 
+        }
+        .resource-card-body a { 
+            color: var(--accent); font-weight: 600; 
+            text-decoration: none; font-size: 0.9375rem; cursor: pointer; 
+        }
+
+        /* Form */
+        .form-container { max-width: 820px; margin: 0 auto; }
+        .form-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { 
+            margin-bottom: 0.625rem; font-weight: 600; 
+            color: var(--ink); font-size: 0.9375rem; 
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.875rem 1.125rem; border: 1px solid var(--border);
+            border-radius: 8px; font-size: 1rem; transition: all 0.2s;
+            font-family: inherit; background: var(--surface); color: var(--ink);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            outline: none; border-color: var(--accent); 
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.1); 
+        }
+        .form-group textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+        .submit-btn {
+            background: var(--accent); color: white; 
+            padding: 0.875rem 2.5rem;
+            border: none; border-radius: 8px; font-size: 1rem;
+            font-weight: 600; cursor: pointer; transition: all 0.2s;
+            font-family: inherit; justify-self: start;
+        }
+        .submit-btn:hover { 
+            background: var(--accent-hover); 
+            transform: translateY(-2px);
+        }
+        .contact-info { 
+            margin-top: 3.5rem; padding: 2rem; 
+            background: var(--surface-raised); border-radius: 12px; 
+            border: 1px solid var(--border-light); 
+        }
+        .contact-info h3 { 
+            margin-bottom: 1.25rem; font-size: 1.125rem; 
+            font-weight: 700; color: var(--ink);
+        }
+        .contact-info p { 
+            margin-bottom: 0.75rem; color: var(--ink-soft); 
+            font-size: 1rem; 
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--surface-raised); 
+            border-top: 1px solid var(--border); 
+            padding: 4rem 2rem 2rem; 
+        }
+        .footer-container { 
+            max-width: 1200px; margin: 0 auto; 
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 3.5rem; margin-bottom: 3rem; 
+        }
+        .footer-brand h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.5rem; font-weight: 800; 
+            margin-bottom: 1rem; color: var(--ink);
+        }
+        .footer-brand p { 
+            color: var(--ink-soft); line-height: 1.8; 
+            font-size: 0.9375rem; margin-bottom: 1.5rem; 
+        }
+        .social-icons { display: flex; gap: 0.75rem; }
+        .social-icon { 
+            width: 40px; height: 40px; 
+            border: 1px solid var(--border); border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; 
+            transition: all 0.2s; text-decoration: none; 
+            color: var(--ink-light); 
+        }
+        .social-icon:hover { 
+            border-color: var(--accent); 
+            color: var(--accent); 
+            background: var(--accent-wash); 
+        }
+        .footer-links h4 { 
+            font-size: 0.8125rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1.5px; 
+            margin-bottom: 1.25rem; color: var(--ink);
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links a { 
+            color: var(--ink-soft); text-decoration: none; 
+            transition: color 0.2s; display: block; 
+            margin-bottom: 0.75rem; font-size: 0.9375rem; cursor: pointer; 
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom { 
+            max-width: 1200px; margin: 0 auto; 
+            padding-top: 2rem; border-top: 1px solid var(--border); 
+            display: flex; justify-content: space-between; 
+            align-items: center; font-size: 0.875rem; 
+            color: var(--ink-light); 
+        }
+        .footer-bottom-links { display: flex; gap: 2rem; }
+        .footer-bottom-links a { 
+            color: var(--ink-light); text-decoration: none; 
+            font-size: 0.875rem; 
+        }
+        .footer-bottom-links a:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+            .industries-list { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.25rem; }
+            .section-header h2 { font-size: 2rem; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-text h2 { font-size: 2rem; }
+            .footer-container { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .industries-list { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo-section" onclick="showPage('home')">
+            <svg class="logo-image" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1"/>
+                        <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1"/>
+                    </linearGradient>
+                </defs>
+                <path d="M 40 50 L 160 50 L 40 150 L 160 150" stroke="url(#logoGrad)" stroke-width="20" stroke-linecap="round" fill="none"/>
+                <path d="M 150 80 L 170 100 L 150 120" stroke="url(#logoGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+            </svg>
+            <div class="logo-text-container">
+                <div class="logo">ZFUTURES</div>
+                <div class="tagline">Strategic Consulting</div>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')" data-page="home" class="active">Home</a></li>
+            <li><a onclick="showPage('capabilities')" data-page="capabilities">Capabilities</a></li>
+            <li><a onclick="showPage('industries')" data-page="industries">Industries</a></li>
+            <li><a onclick="showPage('insights')" data-page="insights">Insights</a></li>
+            <li><a onclick="showPage('blog')" data-page="blog">Blog</a></li>
+            <li><button class="nav-cta" onclick="showPage('contact')">Contact Us</button></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Organizational Intelligence for the Modern World</h1>
+                <p class="hero-subtitle">We partner with organizations to transform operations, harness data intelligence, and build competitive advantages through digital innovation and AI integration.</p>
+                <div class="hero-ctas">
+                    <button class="btn-primary" onclick="showPage('capabilities')">Explore Capabilities</button>
+                    <button class="btn-outline" onclick="showPage('contact')">Discuss Your Challenge</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="section" style="background: var(--surface);">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-label">Who We Are</span>
+                    <h2>Building systems that turn chaos into clarity</h2>
+                    <p>ZFutures is a strategic consulting firm specializing in digital transformation, data intelligence, and AI integration. We don't write reports and walk away. We design, build, and deploy the systems that change how organizations operate.</p>
+                    <p>We bring together a diverse team with deep expertise across continents, working across financial services, development, healthcare, agriculture, technology, and public sectors. Our approach combines technical depth with practical business sense to deliver solutions that work in the real world.</p>
+                </div>
+                <div class="about-pillars">
+                    <div class="pillar">
+                        <div class="pillar-icon">⚙️</div>
+                        <div>
+                            <h4>We Build, Not Just Advise</h4>
+                            <p>Consultants leave you with PowerPoints. We leave you with working systems. We write code, design workflows, train your team, and don't leave until it's running smoothly.</p>
+                        </div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-icon">🌍</div>
+                        <div>
+                            <h4>We Understand Your Reality</h4>
+                            <p>No unlimited budgets. No perfect data. No endless timelines. We design solutions for the real world, where resources are tight and perfection is the enemy of progress.</p>
+                        </div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-icon">🎯</div>
+                        <div>
+                            <h4>Technical Depth Meets Business Sense</h4>
+                            <p>We speak both languages fluently. AI and machine learning aren't buzzwords to us. But we never lose sight of what matters: business outcomes, not technical trophies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Overview -->
+    <section class="section" style="background: var(--surface-raised);">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">What We Do</span>
+                <h2>How we help organizations evolve</h2>
+                <p>Four integrated capabilities designed to move your organization from fragmented operations to intelligent, future-ready systems.</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card" onclick="showPage('capabilities')">
+                    <div class="program-number">Capability 01</div>
+                    <h3>Digital Operations</h3>
+                    <p class="program-subtitle">From Chaos to Efficiency</p>
+                    <p>Replace fragmented manual processes with integrated digital systems. We design operations infrastructure that scales without adding headcount.</p>
+                    <a class="program-cta">Learn more →</a>
+                </div>
+                <div class="program-card" onclick="showPage('capabilities')">
+                    <div class="program-number">Capability 02</div>
+                    <h3>Data Intelligence</h3>
+                    <p class="program-subtitle">From Assumptions to Clarity</p>
+                    <p>Turn scattered data into predictions, recommendations, and automated decisions. We build the full analytics stack from data strategy to deployment.</p>
+                    <a class="program-cta">Learn more →</a>
+                </div>
+                <div class="program-card" onclick="showPage('capabilities')">
+                    <div class="program-number">Capability 03</div>
+                    <h3>Innovation & AI</h3>
+                    <p class="program-subtitle">From Ideas to Deployed Solutions</p>
+                    <p>We validate before we build. Rapid prototyping and structured testing confirm an idea works before committing full resources.</p>
+                    <a class="program-cta">Learn more →</a>
+                </div>
+                <div class="program-card" onclick="showPage('capabilities')">
+                    <div class="program-number">Capability 04</div>
+                    <h3>Scale & Transformation</h3>
+                    <p class="program-subtitle">From Growth to Sustainability</p>
+                    <p>Build the organizational and technical foundations that let companies expand without losing speed or control.</p>
+                    <a class="program-cta">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="section" style="background: var(--surface);">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Where We Work</span>
+                <h2>Industries we serve</h2>
+                <p>Deep expertise across sectors, with particular strength in emerging markets and high-growth environments.</p>
+            </div>
+            <div class="industries-list">
+                <div class="industry-item" onclick="showPage('industries')">💰 Financial Services</div>
+                <div class="industry-item" onclick="showPage('industries')">🌍 Development & NGOs</div>
+                <div class="industry-item" onclick="showPage('industries')">🏥 Healthcare</div>
+                <div class="industry-item" onclick="showPage('industries')">⚡ Technology</div>
+                <div class="industry-item" onclick="showPage('industries')">🌾 Agriculture</div>
+                <div class="industry-item" onclick="showPage('industries')">🏛️ Government</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>Ready to transform your organization?</h2>
+        <p>Partner with us to build future-ready capabilities</p>
+        <button class="btn-primary" onclick="showPage('contact')">Start a Conversation</button>
+    </div>
+</div>
+
+<!-- CAPABILITIES PAGE -->
+<div id="capabilities" class="page">
+    <div class="page-hero">
+        <h1>Our Capabilities</h1>
+        <p>Integrated solutions for organizational transformation</p>
+    </div>
+
+    <section class="cap-section" style="background: var(--surface);">
+        <div class="cap-section-inner">
+            <div class="cap-number-badge"><div class="cap-num">01</div><span class="cap-tag">Digital Operations</span></div>
+            <h2>Digital Operations Transformation</h2>
+            <p>Most organizations don't need more technology. They need the right technology, working together, doing the right things. We design and build digital operations systems that replace fragmented manual processes with integrated, automated workflows that scale without hiring more staff.</p>
+            <div class="cap-delivers-label">What We Deliver</div>
+            <ul class="cap-delivers">
+                <li><span class="deliver-arrow">→</span> End-to-end workflow automation that replaces paper-based and manual processes with systems that route, approve, and escalate without human intervention</li>
+                <li><span class="deliver-arrow">→</span> Automated decision engines for credit scoring, risk assessment, and operational routing that cut processing time from days to seconds</li>
+                <li><span class="deliver-arrow">→</span> Cloud infrastructure designed to grow with your business without constant re-engineering</li>
+                <li><span class="deliver-arrow">→</span> Real-time operational dashboards that show leadership exactly what is happening and where bottlenecks are</li>
+                <li><span class="deliver-arrow">→</span> Systems integration layers that make your existing platforms communicate, eliminating duplicate entry and manual handoffs</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cap-section" style="background: var(--surface-raised);">
+        <div class="cap-section-inner">
+            <div class="cap-number-badge"><div class="cap-num">02</div><span class="cap-tag">Data Intelligence</span></div>
+            <h2>Data Intelligence & Analytics</h2>
+            <p>Data only has value if someone acts on it. Most organizations collect data and let it sit, buried in spreadsheets, scattered across systems. We build the full stack: the strategy that defines what data matters, the infrastructure that makes it accessible, the models that turn it into predictions, and the dashboards that surface insights your teams actually use.</p>
+            <div class="cap-delivers-label">What We Deliver</div>
+            <ul class="cap-delivers">
+                <li><span class="deliver-arrow">→</span> Predictive models that forecast demand, customer churn, equipment failure, and financial risk before they materialize</li>
+                <li><span class="deliver-arrow">→</span> Unified analytics platforms that pull data from every source in your organization and present it in ways decision-makers can understand</li>
+                <li><span class="deliver-arrow">→</span> Data strategy and governance frameworks with clear ownership of what data you have, where it lives, and who can access it</li>
+                <li><span class="deliver-arrow">→</span> Custom machine learning models deployed into production that run continuously and improve over time</li>
+                <li><span class="deliver-arrow">→</span> Internal capability building so your team can maintain, extend, and trust the analytics systems</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cap-section" style="background: var(--surface);">
+        <div class="cap-section-inner">
+            <div class="cap-number-badge"><div class="cap-num">03</div><span class="cap-tag">Innovation & AI</span></div>
+            <h2>Innovation & AI Integration</h2>
+            <p>Most AI projects fail not because the technology doesn't work, but because the idea was never properly validated. We de-risk innovation from the start. Our process moves from hypothesis to proof-of-concept to production in structured, measurable stages, testing assumptions with real users before committing full resources.</p>
+            <div class="cap-delivers-label">What We Deliver</div>
+            <ul class="cap-delivers">
+                <li><span class="deliver-arrow">→</span> AI use-case identification and business case validation to find where AI will actually deliver measurable returns in your specific operations</li>
+                <li><span class="deliver-arrow">→</span> Rapid prototype-to-pilot pipelines with working prototypes in weeks, tested with real users and refined based on what they actually need</li>
+                <li><span class="deliver-arrow">→</span> Generative AI integration for content operations, customer communication, internal knowledge management, and process acceleration</li>
+                <li><span class="deliver-arrow">→</span> Agentic AI systems that observe, plan, and execute multi-step tasks autonomously while maintaining control and auditability</li>
+                <li><span class="deliver-arrow">→</span> Responsible AI frameworks covering bias detection, explainability, compliance guardrails, and ethical governance</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cap-section" style="background: var(--surface-raised);">
+        <div class="cap-section-inner">
+            <div class="cap-number-badge"><div class="cap-num">04</div><span class="cap-tag">Scale & Transformation</span></div>
+            <h2>Scale & Transformation</h2>
+            <p>Growth without structure becomes chaos. Systems that work for fifty people break at five hundred. We build the organizational and technical foundations that let your company expand into new markets, new customer segments, new geographies without losing speed, quality, or control.</p>
+            <div class="cap-delivers-label">What We Deliver</div>
+            <ul class="cap-delivers">
+                <li><span class="deliver-arrow">→</span> Scalable platform architecture using modular, cloud-native design that grows with demand without re-engineering</li>
+                <li><span class="deliver-arrow">→</span> Organizational operating model redesign, restructuring teams, processes, and decision rights so your people can execute at pace</li>
+                <li><span class="deliver-arrow">→</span> Change management and adoption programs that ensure new systems actually get used, with training and feedback loops built into rollout</li>
+                <li><span class="deliver-arrow">→</span> Multi-market expansion playbooks with technical and operational blueprints for entering new regions</li>
+                <li><span class="deliver-arrow">→</span> Internal capability transfer through structured knowledge handover so your team can maintain and evolve systems independently</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>Discuss your transformation goals</h2>
+        <p>Let's explore how our capabilities align with your objectives</p>
+        <button class="btn-primary" onclick="showPage('contact')">Get in Touch</button>
+    </div>
+</div>
+
+<!-- INDUSTRIES PAGE -->
+<div id="industries" class="page">
+    <div class="page-hero">
+        <h1>Industries We Serve</h1>
+        <p>Deep sector expertise combined with cross-industry insight</p>
+    </div>
+    
+    <section class="section" style="background: var(--surface);">
+        <div class="section-container">
+            <div class="section-header">
+                <p style="font-size: 1.125rem; color: var(--ink-soft); line-height: 1.8; text-align: center; max-width: 800px; margin: 0 auto;">
+                    We work across six core industries, bringing proven frameworks from one sector to solve novel challenges in another. Our approach combines deep domain knowledge with cross-industry insights.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin-bottom: 4rem;">
+                <!-- Financial Services -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #2563EB, #3B82F6); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">💰</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Financial Services & Insurance</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        We help banks, insurers, and fintech companies make faster, more accurate decisions at scale through automated credit approval systems, portfolio optimization models, and real-time fraud detection.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Credit scoring and automated approval systems
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Portfolio optimization using machine learning
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Fraud detection and AML systems
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Customer segmentation and personalization
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Development & NGOs -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #DC2626, #F97316); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🌍</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Development & NGOs</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        Development organizations face unique challenges. We build monitoring and evaluation platforms that collect field data in real time, even without connectivity, and automate donor reporting.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Digital M&E systems and impact tracking
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Beneficiary data platforms and analytics
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Resource allocation optimization
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Donor reporting automation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Healthcare -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #059669, #22C55E); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🏥</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Healthcare & Life Sciences</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        Healthcare systems are drowning in data but starving for insight. We build clinical decision support tools, patient data platforms, and operational systems that reduce wait times and optimize resource allocation.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Electronic health record optimization
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Patient flow and scheduling systems
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Predictive models for patient outcomes
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Clinical decision support systems
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Technology -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #7C3AED, #A78BFA); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">⚡</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Technology & Startups</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        We partner with technology companies to architect systems that grow with demand, from embedding machine learning into core products to designing data infrastructure that supports millions of users.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Product analytics and user behavior tracking
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                AI-powered personalization engines
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Data infrastructure and pipelines
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Growth metrics and funnel optimization
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Agriculture -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #15803D, #4ADE80); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🌾</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Agriculture & Food Systems</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        We build crop yield prediction systems that work with available data, supply chain platforms that connect smallholder farmers to buyers, and advisory tools that deliver guidance via basic mobile phones.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Farmer registration and profiling systems
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Yield prediction and crop monitoring
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Supply chain traceability platforms
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Market price analytics and forecasting
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Government -->
+                <div style="padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #1E40AF, #60A5FA); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🏛️</div>
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink);">Government & Public Sector</h3>
+                    </div>
+                    <p style="color: var(--ink-soft); line-height: 1.8; font-size: 1.0625rem; margin-bottom: 1.5rem;">
+                        Citizens expect services that are simple, fast, and transparent. We design digital service platforms that make government accessible and analytics that help policymakers understand what is working.
+                    </p>
+                    <div style="padding: 1.5rem; background: var(--surface-raised); border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Key Solutions</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                E-government platforms and portals
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Public service delivery optimization
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Policy impact modeling and simulation
+                            </li>
+                            <li style="color: var(--ink-soft); font-size: 0.9375rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">→</span>
+                                Citizen data platforms and analytics
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>Every challenge is different</h2>
+        <p>We don't apply templates. Tell us your problem and we'll show you what's possible.</p>
+        <button class="btn-primary" onclick="showPage('contact')">Describe Your Challenge</button>
+    </div>
+</div>
+
+<!-- BLOG PAGE -->
+<div id="blog" class="page">
+    <div class="page-hero">
+        <h1>Blog</h1>
+        <p>Perspectives on digital transformation and organizational evolution</p>
+    </div>
+    <section class="section" style="background: var(--surface-raised);">
+        <div class="section-container">
+            <div class="blog-grid" id="blogPostsList"></div>
+        </div>
+    </section>
+</div>
+
+<!-- INSIGHTS PAGE -->
+<div id="insights" class="page">
+    <div class="page-hero">
+        <h1>Insights & Research</h1>
+        <p>In-depth research and thought leadership</p>
+    </div>
+    <section class="section" style="background: var(--surface);">
+        <div class="section-container">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;" id="insightsList"></div>
+        </div>
+    </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page">
+    <div class="page-hero">
+        <h1>Let's discuss your challenge</h1>
+        <p>Share your objectives and we'll propose a customized approach</p>
+    </div>
+    <section class="section" style="background: var(--surface);">
+        <div class="form-container">
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form-grid">
+                <input type="hidden" name="form-name" value="contact"/>
+                <p style="display:none;"><label>Don't fill this out: <input name="bot-field"/></label></p>
+                <div class="form-row">
+                    <div class="form-group"><label>Full Name *</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>Job Title *</label><input type="text" name="title" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Email Address *</label><input type="email" name="email" required></div>
+                    <div class="form-group"><label>Phone Number</label><input type="tel" name="phone"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Organization Name *</label><input type="text" name="organization" required></div>
+                    <div class="form-group">
+                        <label>Industry *</label>
+                        <select name="industry" required>
+                            <option value="">Select industry</option>
+                            <option value="financial">Financial Services</option>
+                            <option value="development">Development & NGOs</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="technology">Technology</option>
+                            <option value="agriculture">Agriculture</option>
+                            <option value="government">Government</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Organization Size *</label>
+                        <select name="size" required>
+                            <option value="">Select size</option>
+                            <option value="1-50">1-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-1000">201-1,000 employees</option>
+                            <option value="1000+">1,000+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Geographic Focus *</label>
+                        <select name="geography" required>
+                            <option value="">Select region</option>
+                            <option value="africa">Africa</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europe</option>
+                            <option value="americas">Americas</option>
+                            <option value="global">Global / Multiple Regions</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Area of Interest *</label>
+                    <select name="capability" required>
+                        <option value="">Select capability</option>
+                        <option value="digital">Digital Operations</option>
+                        <option value="data">Data Intelligence</option>
+                        <option value="innovation">Innovation & AI</option>
+                        <option value="scale">Scale & Transformation</option>
+                        <option value="multiple">Multiple Capabilities</option>
+                        <option value="not-sure">Not Sure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Expected Timeline *</label>
+                    <select name="timeline" required>
+                        <option value="">Select timeline</option>
+                        <option value="immediate">Immediate (within 1 month)</option>
+                        <option value="short">Short-term (1-3 months)</option>
+                        <option value="medium">Medium-term (3-6 months)</option>
+                        <option value="long">Long-term (6+ months)</option>
+                        <option value="planning">Planning phase</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Describe Your Challenge and Objectives *</label>
+                    <textarea name="message" required placeholder="Help us understand your current situation, key challenges, and what success looks like..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+            <div class="contact-info">
+                <h3>General Inquiries</h3>
+                <p><strong>Email:</strong> ZFutures@outlook.com</p>
+                <p><strong>Headquarters:</strong> Blantyre, Malawi</p>
+                <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">We respond to all inquiries within 24 hours.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>ZFUTURES</h3>
+            <p>Strategic consulting in digital transformation, data intelligence, and AI integration. We build the systems that help organizations operate with precision.</p>
+            <div class="social-icons">
+                <a href="https://linkedin.com/company/zfutures" target="_blank" rel="noopener" class="social-icon">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://facebook.com/ZFuturesGlobal" target="_blank" rel="noopener" class="social-icon">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="mailto:ZFutures@outlook.com" class="social-icon">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Capabilities</h4>
+            <ul>
+                <li><a onclick="showPage('capabilities')">Digital Operations</a></li>
+                <li><a onclick="showPage('capabilities')">Data Intelligence</a></li>
+                <li><a onclick="showPage('capabilities')">Innovation & AI</a></li>
+                <li><a onclick="showPage('capabilities')">Scale & Transformation</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Industries</h4>
+            <ul>
+                <li><a onclick="showPage('industries')">Financial Services</a></li>
+                <li><a onclick="showPage('industries')">Development & NGOs</a></li>
+                <li><a onclick="showPage('industries')">Healthcare</a></li>
+                <li><a onclick="showPage('industries')">Technology</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+                <li><a onclick="showPage('blog')">Blog</a></li>
+                <li><a onclick="showPage('insights')">Insights</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div>&copy; <span id="currentYear"></span> ZFutures. All rights reserved.</div>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Load External JavaScript Files -->
+<script src="blog-posts.js"></script>
+<script src="insights.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
