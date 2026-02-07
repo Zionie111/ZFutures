@@ -8,7 +8,7 @@ const blogPosts = [
         category: 'Digital Transformation',
         excerpt: 'A practical framework for assessing organizational data maturity and building trusted, intelligence-driven decision-making.',
         readTime: '9 min read',
-        date: '6 February 2026',
+        date: 'Feb 2026',
         icon: '📊',
         gradient: 'linear-gradient(135deg, #2563EB 0%, #3B82F6 100%)',
         url: 'https://medium.com/@zioniekamtambe/the-data-maturity-model-where-does-your-organization-stand-916fcfd1448d'
@@ -19,8 +19,8 @@ const blogPosts = [
         title: 'Beyond the AI Hype: Practical Implementation Strategies',
         category: 'AI Strategy',
         excerpt: 'Why AI projects fail and how to build a disciplined approach that delivers measurable business value without overwhelming your organization.',
-        readTime: '12 min read',
-        date: '7 february 2026',
+        readTime: '8 min read',
+        date: 'Feb 2026',
         icon: '🤖',
         gradient: 'linear-gradient(135deg, #EA580C 0%, #F97316 100%)',
         url: 'https://medium.com/@zioniekamtambe/beyond-the-ai-hype-practical-implementation-strategies-1024d0f30b60'
