@@ -20,10 +20,10 @@ const blogPosts = [
         category: 'AI Strategy',
         excerpt: 'Why AI projects fail and how to build a disciplined approach that delivers measurable business value without overwhelming your organization.',
         readTime: '12 min read',
-        date: 'Jan 2026',
+        date: '7 february 2026',
         icon: '🤖',
         gradient: 'linear-gradient(135deg, #EA580C 0%, #F97316 100%)',
-        url: '#'
+        url: 'https://medium.com/@zioniekamtambe/beyond-the-ai-hype-practical-implementation-strategies-1024d0f30b60'
     },
     {
         id: 'validation-importance',
