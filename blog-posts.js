@@ -10,7 +10,7 @@ const blogPosts = [
         readTime: '9 min read',
         date: 'Feb 2026',
         // OPTION 1: Use GitHub raw URL (replace with your actual GitHub URL)
-        coverImage: 'https://raw.githubusercontent.com/YOUR-USERNAME/ZFutures/main/The%20five%20stages%20of%20data%20maturity.png',
+        coverImage: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*Q-vPcd16t4chLTpiq02-hg.png',
         // OR OPTION 2: If hosting image on your website
         // coverImage: 'images/data-maturity-cover.png',
         gradient: 'linear-gradient(135deg, #2563EB 0%, #3B82F6 100%)',
