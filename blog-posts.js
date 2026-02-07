@@ -8,14 +8,12 @@ const blogPosts = [
         category: 'Digital Transformation',
         excerpt: 'A practical framework for assessing organizational data maturity and building trusted, intelligence-driven decision-making.',
         readTime: '9 min read',
-        date: 'Feb 2026',
-        // OPTION 1: Use GitHub raw URL (replace with your actual GitHub URL)
-        coverImage: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*Q-vPcd16t4chLTpiq02-hg.png',
-        // OR OPTION 2: If hosting image on your website
-        // coverImage: 'images/data-maturity-cover.png',
+        date: '6 February 2026',
+        icon: '📊',
         gradient: 'linear-gradient(135deg, #2563EB 0%, #3B82F6 100%)',
         url: 'https://medium.com/@zioniekamtambe/the-data-maturity-model-where-does-your-organization-stand-916fcfd1448d'
     },
+    
     {
         id: 'ai-implementation',
         title: 'Beyond the AI Hype: Practical Implementation Strategies',
