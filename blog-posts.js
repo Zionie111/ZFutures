@@ -30,8 +30,8 @@ const blogPosts = [
         title: 'The Cost of Not Validating: Why Testing Before Scaling Matters',
         category: 'Innovation',
         excerpt: 'How structured validation frameworks help organizations eliminate dead ends early, focus resources on what works, and build confidence before scaling.',
-        readTime: '12 min read',
-        date: 'Jan 2026',
+        readTime: '6 min read',
+        date: 'Feb 2026',
         icon: '💡',
         gradient: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
         url: 'https://medium.com/@zioniekamtambe/the-cost-of-not-validating-why-testing-before-scaling-matters-3ef593ce171c'
