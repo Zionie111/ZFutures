@@ -34,6 +34,6 @@ const blogPosts = [
         date: 'Jan 2026',
         icon: '💡',
         gradient: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
-        url: '#'
+        url: 'https://medium.com/@zioniekamtambe/the-cost-of-not-validating-why-testing-before-scaling-matters-3ef593ce171c'
     }
 ];
