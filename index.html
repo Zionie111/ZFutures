@@ -535,6 +535,7 @@
             .form-row { grid-template-columns: 1fr; }
             .industries-list { grid-template-columns: 1fr; }
             .blog-grid { grid-template-columns: 1fr; }
+            #insightsList { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -1016,96 +1017,38 @@
     <div class="page-hero">
         <h1>Let's discuss your challenge</h1>
         <p>Share your objectives and we'll propose a customized approach</p>
-    </div>
-    <section class="section" style="background: var(--surface);">
-        <div class="form-container">
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form-grid">
-                <input type="hidden" name="form-name" value="contact"/>
-                <p style="display:none;"><label>Don't fill this out: <input name="bot-field"/></label></p>
-                <div class="form-row">
-                    <div class="form-group"><label>Full Name *</label><input type="text" name="name" required></div>
-                    <div class="form-group"><label>Job Title *</label><input type="text" name="title" required></div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group"><label>Email Address *</label><input type="email" name="email" required></div>
-                    <div class="form-group"><label>Phone Number</label><input type="tel" name="phone"></div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group"><label>Organization Name *</label><input type="text" name="organization" required></div>
-                    <div class="form-group">
-                        <label>Industry *</label>
-                        <select name="industry" required>
-                            <option value="">Select industry</option>
-                            <option value="financial">Financial Services</option>
-                            <option value="development">Development & NGOs</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="technology">Technology</option>
-                            <option value="agriculture">Agriculture</option>
-                            <option value="government">Government</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Organization Size *</label>
-                        <select name="size" required>
-                            <option value="">Select size</option>
-                            <option value="1-50">1-50 employees</option>
-                            <option value="51-200">51-200 employees</option>
-                            <option value="201-1000">201-1,000 employees</option>
-                            <option value="1000+">1,000+ employees</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Geographic Focus *</label>
-                        <select name="geography" required>
-                            <option value="">Select region</option>
-                            <option value="africa">Africa</option>
-                            <option value="asia">Asia</option>
-                            <option value="europe">Europe</option>
-                            <option value="americas">Americas</option>
-                            <option value="global">Global / Multiple Regions</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Area of Interest *</label>
-                    <select name="capability" required>
-                        <option value="">Select capability</option>
-                        <option value="digital">Digital Operations</option>
-                        <option value="data">Data Intelligence</option>
-                        <option value="innovation">Innovation & AI</option>
-                        <option value="scale">Scale & Transformation</option>
-                        <option value="multiple">Multiple Capabilities</option>
-                        <option value="not-sure">Not Sure</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Expected Timeline *</label>
-                    <select name="timeline" required>
-                        <option value="">Select timeline</option>
-                        <option value="immediate">Immediate (within 1 month)</option>
-                        <option value="short">Short-term (1-3 months)</option>
-                        <option value="medium">Medium-term (3-6 months)</option>
-                        <option value="long">Long-term (6+ months)</option>
-                        <option value="planning">Planning phase</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Describe Your Challenge and Objectives *</label>
-                    <textarea name="message" required placeholder="Help us understand your current situation, key challenges, and what success looks like..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Submit Inquiry</button>
-            </form>
-            <div class="contact-info">
-                <h3>General Inquiries</h3>
-                <p><strong>Email:</strong> ZFutures@outlook.com</p>
-                <p><strong>Headquarters:</strong> Blantyre, Malawi</p>
-                <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">We respond to all inquiries within 24 hours.</p>
-            </div>
+   </div>
+
+<section class="section" style="background: var(--surface);">
+    <div class="form-container">
+
+        <!-- Google Form Embed -->
+        <div class="form-grid">
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScnu9hKQmP4Qqhva53CjRlwxNmWKWC6nEWtI-D6bvAC0u4dCg/viewform?embedded=true"
+                width="100%"
+                height="2718"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                style="border: none;">
+                Loading…
+            </iframe>
         </div>
-    </section>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <h3>General Inquiries</h3>
+            <p><strong>Email:</strong> ZFutures@outlook.com</p>
+            <p><strong>Headquarters:</strong> Lilongwe, Malawi</p>
+            <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">
+                We respond to all inquiries within 24 hours.
+            </p>
+        </div>
+
+    </div>
+</section>
+
 </div>
 
 <!-- FOOTER -->
