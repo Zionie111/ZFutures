@@ -1010,16 +1010,19 @@
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;" id="insightsList"></div>
         </div>
     </section>
-    </div>
-    <div id="contact" class="page">
-        <div class="page-hero">
+</div>  ← CRITICAL: This closes Insights page
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page">
+    <div class="page-hero">
         <h1>Let's discuss your challenge</h1>
-        <p>Share your objectives with ZFutures and we'll propose a customized approach. Our team will respond within 24 hours.</p>
+        <p>Share your objectives with ZFutures and we'll propose a customized approach.</p>
     </div>
 
     <section class="section" style="background: var(--surface);">
         <div class="form-container">
             
+            <!-- Success Message (hidden by default) -->
             <div id="success-msg" style="display:none; text-align: center; padding: 60px 20px; background: white; border-radius: 12px; border: 1px solid #eee;">
                 <div style="font-size: 4rem; margin-bottom: 20px;">🚀</div>
                 <h2 style="color: #1a1a1a; margin-bottom: 10px;">Mission Received</h2>
@@ -1027,6 +1030,7 @@
                 <button onclick="location.reload()" class="submit-btn" style="width: auto; padding: 12px 30px;">Send another inquiry</button>
             </div>
 
+            <!-- Contact Form -->
             <form id="zfutures-form" class="form-grid">
                 
                 <div class="form-row">
@@ -1061,7 +1065,7 @@
                         <select name="org_size" required>
                             <option value="">Select size</option>
                             <option value="Solo/Seed">Solo/Seed: 1 – 5</option>
-                            <option value="Micro">Micro: 6 – 20 (The Lean Builders)</option>
+                            <option value="Micro">Micro: 6 – 20</option>
                             <option value="Small">Small: 21 – 50</option>
                             <option value="Medium">Medium: 51 – 250</option>
                             <option value="Large">Large: 251 – 1,000</option>
@@ -1123,18 +1127,13 @@
                 <button type="submit" id="submit-btn" class="submit-btn">Submit Inquiry to ZFutures</button>
             </form>
 
-            <div class="contact-info">
-                <h3>General Inquiries</h3>
-                <p><strong>Email:</strong> ZFutures@outlook.com</p>
-                <p><strong>Headquarters:</strong> Malawi</p>
-                <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">Building Tomorrow, Today.</p>
-            </div>
-        </div>
+            
     </section>
-</div>
+</div>  ← This closes Contact page
 
+<!-- Form Submission Script -->
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwKPt6-fHhAz2SkOwON3tImt3OL-gH_2MqgOgP1YsVMynuS6RXavh_Y8hhjFuJTNi-M/exec'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxTliMwlfEvaI914aO8O9-cERUUb6nzJFFdlFvWELCyKomE3qGEljDhHlBg2KwJRfKb/exec'  // ← REPLACE WITH YOUR URL
   const form = document.getElementById('zfutures-form')
   const successMsg = document.getElementById('success-msg')
   const btn = document.getElementById('submit-btn')
@@ -1142,25 +1141,33 @@
   form.addEventListener('submit', e => {
     e.preventDefault()
     
-    // UI Feedback for Submission
+    // Show loading state
     btn.disabled = true
     btn.innerText = "Transmitting to ZFutures..."
     btn.style.opacity = "0.7"
     
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-          form.style.display = 'none'
-          successMsg.style.display = 'block'
-          window.scrollTo({
-              top: document.getElementById('contact').offsetTop,
-              behavior: 'smooth'
-          })
+    // Submit to Google Apps Script
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: new FormData(form)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data)
+      form.style.display = 'none'
+      successMsg.style.display = 'block'
+      window.scrollTo({
+        top: document.getElementById('contact').offsetTop,
+        behavior: 'smooth'
       })
-      .catch(error => {
-          console.error('Error!', error.message)
-          btn.disabled = false
-          btn.innerText = "Error - Try Again"
-      })
+    })
+    .catch(error => {
+      console.error('Error:', error)
+      btn.disabled = false
+      btn.innerText = "Error - Try Again"
+      btn.style.opacity = "1"
+      alert('There was an error submitting the form. Please try again or email us directly at ZFutures@outlook.com')
+    })
   })
 </script>
 
