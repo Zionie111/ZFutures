@@ -1031,12 +1031,14 @@
             </div>
 
            
+<!-- ========================================================= -->
+<!-- COMPLETE CONTACT PAGE SECTION - READY TO USE -->
+<!-- Replace your existing contact page with this entire section -->
+<!-- From: <div id="contact" class="page"> -->
+<!-- To: </div> (the closing div for contact page) -->
+<!-- ========================================================= -->
 
-<!-- ============================================ -->
-<!-- ZFUTURES CONTACT FORM - COMPLETE CODE -->
-<!-- Copy this ENTIRE section and replace your existing contact form -->
-<!-- ============================================ -->
-
+<!-- CONTACT PAGE -->
 <div id="contact" class="page">
     <div class="page-hero">
         <h1>Let's discuss your challenge</h1>
@@ -1177,30 +1179,29 @@
             <div class="contact-info">
                 <h3>General Inquiries</h3>
                 <p><strong>Email:</strong> ZFutures@outlook.com</p>
-                <p><strong>Headquarters:</strong> Blantyre, Malawi</p>
+                <p><strong>Headquarters:</strong> Lilongwe, Malawi</p>
                 <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">We respond to all inquiries within 24 hours.</p>
             </div>
         </div>
     </section>
 </div>
 
-<!-- ============================================ -->
-<!-- FORM SUBMISSION JAVASCRIPT -->
-<!-- Add this script BEFORE the closing </body> tag -->
-<!-- ============================================ -->
+<!-- ========================================================= -->
+<!-- FORM JAVASCRIPT - ADD THIS BEFORE </body> TAG -->
+<!-- If you already have a <script> section in your HTML, -->
+<!-- add the code below INSIDE that existing <script> tag -->
+<!-- ========================================================= -->
 
 <script>
-// ============================================
-// IMPORTANT: REPLACE THIS WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL
-// Get this URL after deploying your Google Apps Script
-// It should look like: https://script.google.com/macros/s/AKfycby.../exec
-// ============================================
+// ========================================================
+// GOOGLE APPS SCRIPT URL - YOUR ACTUAL URL IS SET HERE
+// ========================================================
 
-const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2869Qhc-Ju79n1XLu9F1_BWoYL90s7Rt8OiT_dE9NiRbroDMB4HxYCG0cFzwUTBGM/exec';
 
-// ============================================
+// ========================================================
 // FORM SUBMISSION HANDLER
-// ============================================
+// ========================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('zfutures-form');
@@ -1293,9 +1294,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Add spin animation for loading spinner
-const style = document.createElement('style');
-style.textContent = `
+// Add animations for loading spinner and messages
+const formStyle = document.createElement('style');
+formStyle.textContent = `
     @keyframes spin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -1311,13 +1312,12 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(formStyle);
 </script>
 
-<!-- ============================================ -->
-<!-- END OF FORM CODE -->
-<!-- ============================================ -->
-
+<!-- ========================================================= -->
+<!-- END OF CONTACT PAGE AND FORM JAVASCRIPT -->
+<!-- ========================================================= -->
         <!-- Contact Info -->
         <div class="contact-info">
             <h3>General Inquiries</h3>
