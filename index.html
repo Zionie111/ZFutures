@@ -516,6 +516,12 @@
         }
         .footer-bottom-links a:hover { color: var(--accent); }
 
+        /* Spinner animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3rem; }
@@ -1010,33 +1016,7 @@
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;" id="insightsList"></div>
         </div>
     </section>
-</div>  ← CRITICAL: This closes Insights page
-
-<!-- CONTACT PAGE -->
-<div id="contact" class="page">
-    <div class="page-hero">
-        <h1>Let's discuss your challenge</h1>
-        <p>Share your objectives with ZFutures and we'll propose a customized approach.</p>
-    </div>
-
-    <section class="section" style="background: var(--surface);">
-        <div class="form-container">
-            
-            <!-- Success Message (hidden by default) -->
-            <div id="success-msg" style="display:none; text-align: center; padding: 60px 20px; background: white; border-radius: 12px; border: 1px solid #eee;">
-                <div style="font-size: 4rem; margin-bottom: 20px;">🚀</div>
-                <h2 style="color: #1a1a1a; margin-bottom: 10px;">Mission Received</h2>
-                <p style="color: #666; max-width: 500px; margin: 0 auto 30px;">Your inquiry has been successfully transmitted to the ZFutures vault. We are reviewing your objectives and will contact you within 24 hours.</p>
-                <button onclick="location.reload()" class="submit-btn" style="width: auto; padding: 12px 30px;">Send another inquiry</button>
-            </div>
-
-           
-<!-- ========================================================= -->
-<!-- COMPLETE CONTACT PAGE SECTION - READY TO USE -->
-<!-- Replace your existing contact page with this entire section -->
-<!-- From: <div id="contact" class="page"> -->
-<!-- To: </div> (the closing div for contact page) -->
-<!-- ========================================================= -->
+</div>
 
 <!-- CONTACT PAGE -->
 <div id="contact" class="page">
@@ -1048,24 +1028,24 @@
     <section class="section" style="background: var(--surface);">
         <div class="form-container">
             
-            <!-- Success Message (hidden by default) -->
-            <div id="success-message" style="display: none; padding: 1.5rem; background: #D1FAE5; border: 2px solid #059669; border-radius: 12px; margin-bottom: 2rem; animation: slideIn 0.4s ease;">
+            <!-- Success Message -->
+            <div id="success-message" style="display: none; padding: 1.5rem; background: #D1FAE5; border: 2px solid #059669; border-radius: 12px; margin-bottom: 2rem;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <div style="font-size: 2.5rem;">✓</div>
                     <div>
                         <h3 style="color: #059669; margin-bottom: 0.5rem; font-size: 1.25rem;">Thank you for your inquiry!</h3>
-                        <p style="color: #047857; margin: 0; font-size: 1rem;">We've received your message and will respond within 24 hours. Check your email for confirmation.</p>
+                        <p style="color: #047857; margin: 0;">We've received your message and will respond within 24 hours.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Error Message (hidden by default) -->
-            <div id="error-message" style="display: none; padding: 1.5rem; background: #FEE2E2; border: 2px solid #DC2626; border-radius: 12px; margin-bottom: 2rem; animation: slideIn 0.4s ease;">
+            <!-- Error Message -->
+            <div id="error-message" style="display: none; padding: 1.5rem; background: #FEE2E2; border: 2px solid #DC2626; border-radius: 12px; margin-bottom: 2rem;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <div style="font-size: 2.5rem;">⚠</div>
                     <div>
                         <h3 style="color: #DC2626; margin-bottom: 0.5rem; font-size: 1.25rem;">Submission Error</h3>
-                        <p id="error-text" style="color: #991B1B; margin: 0; font-size: 1rem;">There was an error submitting your form. Please try again or email us directly at ZFutures@outlook.com</p>
+                        <p id="error-text" style="color: #991B1B; margin: 0;">There was an error. Please try again or email ZFutures@outlook.com</p>
                     </div>
                 </div>
             </div>
@@ -1161,7 +1141,7 @@
                 <div class="form-group">
                     <label>Describe Your Challenge and Objectives *</label>
                     <p style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">Help us understand your current situation, key challenges, and what success looks like.</p>
-                    <textarea name="message" required style="min-height: 150px;" placeholder="Tell us about your challenge... (minimum 20 characters)"></textarea>
+                    <textarea name="message" required style="min-height: 150px;" placeholder="Tell us about your challenge..."></textarea>
                 </div>
 
                 <button type="submit" id="submit-btn" class="submit-btn">
@@ -1176,6 +1156,7 @@
                 </button>
             </form>
 
+            <!-- Contact Info -->
             <div class="contact-info">
                 <h3>General Inquiries</h3>
                 <p><strong>Email:</strong> ZFutures@outlook.com</p>
@@ -1184,153 +1165,6 @@
             </div>
         </div>
     </section>
-</div>
-
-<!-- ========================================================= -->
-<!-- FORM JAVASCRIPT - ADD THIS BEFORE </body> TAG -->
-<!-- If you already have a <script> section in your HTML, -->
-<!-- add the code below INSIDE that existing <script> tag -->
-<!-- ========================================================= -->
-
-<script>
-// ========================================================
-// GOOGLE APPS SCRIPT URL - YOUR ACTUAL URL IS SET HERE
-// ========================================================
-
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2869Qhc-Ju79n1XLu9F1_BWoYL90s7Rt8OiT_dE9NiRbroDMB4HxYCG0cFzwUTBGM/exec';
-
-// ========================================================
-// FORM SUBMISSION HANDLER
-// ========================================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('zfutures-form');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get elements
-            const submitBtn = document.getElementById('submit-btn');
-            const btnText = document.getElementById('btn-text');
-            const btnLoading = document.getElementById('btn-loading');
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-            const errorText = document.getElementById('error-text');
-            
-            // Validate message length (minimum 20 characters)
-            const messageField = form.querySelector('[name="message"]');
-            if (messageField.value.trim().length < 20) {
-                errorMessage.style.display = 'block';
-                errorText.textContent = 'Please provide more details about your challenge (minimum 20 characters).';
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
-            
-            // Disable submit button and show loading state
-            submitBtn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline-flex';
-            
-            // Hide any previous messages
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Collect form data
-            const formData = new FormData(form);
-            
-            // Convert FormData to URL-encoded string
-            const params = new URLSearchParams(formData).toString();
-            
-            // Submit to Google Apps Script
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: params,
-                mode: 'no-cors' // Required for Google Apps Script
-            })
-            .then(() => {
-                // Show success message
-                successMessage.style.display = 'block';
-                
-                // Reset form
-                form.reset();
-                
-                // Scroll to success message
-                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                
-                // Optional: Send analytics event
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'form_submission', {
-                        'event_category': 'Contact',
-                        'event_label': 'Contact Form'
-                    });
-                }
-            })
-            .catch((error) => {
-                // Show error message
-                errorMessage.style.display = 'block';
-                errorText.textContent = 'There was an error submitting your form. Please try again or email us directly at ZFutures@outlook.com';
-                
-                // Scroll to error message
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                
-                // Log error for debugging
-                console.error('Form submission error:', error);
-            });
-        });
-    }
-});
-
-// Add animations for loading spinner and messages
-const formStyle = document.createElement('style');
-formStyle.textContent = `
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    @keyframes slideIn {
-        from { 
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to { 
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(formStyle);
-</script>
-
-<!-- ========================================================= -->
-<!-- END OF CONTACT PAGE AND FORM JAVASCRIPT -->
-<!-- ========================================================= -->
-        <!-- Contact Info -->
-        <div class="contact-info">
-            <h3>General Inquiries</h3>
-            <p><strong>Email:</strong> ZFutures@outlook.com</p>
-            <p><strong>Headquarters:</strong> Lilongwe, Malawi</p>
-            <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">
-                We respond to all inquiries within 24 hours.
-            </p>
-        </div>
-
-    </div>
-</section>
-
 </div>
 
 <!-- FOOTER -->
