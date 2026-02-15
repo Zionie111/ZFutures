@@ -1030,6 +1030,44 @@
                 <button onclick="location.reload()" class="submit-btn" style="width: auto; padding: 12px 30px;">Send another inquiry</button>
             </div>
 
+           
+
+<!-- ============================================ -->
+<!-- ZFUTURES CONTACT FORM - COMPLETE CODE -->
+<!-- Copy this ENTIRE section and replace your existing contact form -->
+<!-- ============================================ -->
+
+<div id="contact" class="page">
+    <div class="page-hero">
+        <h1>Let's discuss your challenge</h1>
+        <p>Share your objectives and we'll propose a customized approach</p>
+    </div>
+    
+    <section class="section" style="background: var(--surface);">
+        <div class="form-container">
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" style="display: none; padding: 1.5rem; background: #D1FAE5; border: 2px solid #059669; border-radius: 12px; margin-bottom: 2rem; animation: slideIn 0.4s ease;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 2.5rem;">✓</div>
+                    <div>
+                        <h3 style="color: #059669; margin-bottom: 0.5rem; font-size: 1.25rem;">Thank you for your inquiry!</h3>
+                        <p style="color: #047857; margin: 0; font-size: 1rem;">We've received your message and will respond within 24 hours. Check your email for confirmation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message (hidden by default) -->
+            <div id="error-message" style="display: none; padding: 1.5rem; background: #FEE2E2; border: 2px solid #DC2626; border-radius: 12px; margin-bottom: 2rem; animation: slideIn 0.4s ease;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 2.5rem;">⚠</div>
+                    <div>
+                        <h3 style="color: #DC2626; margin-bottom: 0.5rem; font-size: 1.25rem;">Submission Error</h3>
+                        <p id="error-text" style="color: #991B1B; margin: 0; font-size: 1rem;">There was an error submitting your form. Please try again or email us directly at ZFutures@outlook.com</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Contact Form -->
             <form id="zfutures-form" class="form-grid">
                 
@@ -1064,12 +1102,12 @@
                         <label>Organization Size *</label>
                         <select name="org_size" required>
                             <option value="">Select size</option>
-                            <option value="Solo/Seed">Solo/Seed: 1 – 5</option>
-                            <option value="Micro">Micro: 6 – 20</option>
-                            <option value="Small">Small: 21 – 50</option>
-                            <option value="Medium">Medium: 51 – 250</option>
-                            <option value="Large">Large: 251 – 1,000</option>
-                            <option value="Global/Massive">Global/Massive: 1,000+</option>
+                            <option value="Solo/Seed: 1 – 5">Solo/Seed: 1 – 5</option>
+                            <option value="Micro: 6 – 20">Micro: 6 – 20</option>
+                            <option value="Small: 21 – 50">Small: 21 – 50</option>
+                            <option value="Medium: 51 – 250">Medium: 51 – 250</option>
+                            <option value="Large: 251 – 1,000">Large: 251 – 1,000</option>
+                            <option value="Global/Massive: 1,000+">Global/Massive: 1,000+</option>
                         </select>
                     </div>
                 </div>
@@ -1121,55 +1159,164 @@
                 <div class="form-group">
                     <label>Describe Your Challenge and Objectives *</label>
                     <p style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">Help us understand your current situation, key challenges, and what success looks like.</p>
-                    <textarea name="message" required style="min-height: 150px;" placeholder="Start writing here..."></textarea>
+                    <textarea name="message" required style="min-height: 150px;" placeholder="Tell us about your challenge... (minimum 20 characters)"></textarea>
                 </div>
 
-                <button type="submit" id="submit-btn" class="submit-btn">Submit Inquiry to ZFutures</button>
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <span id="btn-text">Submit Inquiry to ZFutures</span>
+                    <span id="btn-loading" style="display: none;">
+                        <svg style="display: inline-block; width: 20px; height: 20px; margin-right: 8px; animation: spin 1s linear infinite;" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" stroke-opacity="0.25"></circle>
+                            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+                        </svg>
+                        Submitting...
+                    </span>
+                </button>
             </form>
 
-            
+            <div class="contact-info">
+                <h3>General Inquiries</h3>
+                <p><strong>Email:</strong> ZFutures@outlook.com</p>
+                <p><strong>Headquarters:</strong> Blantyre, Malawi</p>
+                <p style="margin-top: 1.25rem; color: var(--ink-light); font-size: 0.9375rem;">We respond to all inquiries within 24 hours.</p>
+            </div>
+        </div>
     </section>
-</div>  ← This closes Contact page
+</div>
 
-<!-- Form Submission Script -->
+<!-- ============================================ -->
+<!-- FORM SUBMISSION JAVASCRIPT -->
+<!-- Add this script BEFORE the closing </body> tag -->
+<!-- ============================================ -->
+
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxTliMwlfEvaI914aO8O9-cERUUb6nzJFFdlFvWELCyKomE3qGEljDhHlBg2KwJRfKb/exec'  // ← REPLACE WITH YOUR URL
-  const form = document.getElementById('zfutures-form')
-  const successMsg = document.getElementById('success-msg')
-  const btn = document.getElementById('submit-btn')
+// ============================================
+// IMPORTANT: REPLACE THIS WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL
+// Get this URL after deploying your Google Apps Script
+// It should look like: https://script.google.com/macros/s/AKfycby.../exec
+// ============================================
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
+const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+// ============================================
+// FORM SUBMISSION HANDLER
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('zfutures-form');
     
-    // Show loading state
-    btn.disabled = true
-    btn.innerText = "Transmitting to ZFutures..."
-    btn.style.opacity = "0.7"
-    
-    // Submit to Google Apps Script
-    fetch(scriptURL, { 
-      method: 'POST', 
-      body: new FormData(form)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data)
-      form.style.display = 'none'
-      successMsg.style.display = 'block'
-      window.scrollTo({
-        top: document.getElementById('contact').offsetTop,
-        behavior: 'smooth'
-      })
-    })
-    .catch(error => {
-      console.error('Error:', error)
-      btn.disabled = false
-      btn.innerText = "Error - Try Again"
-      btn.style.opacity = "1"
-      alert('There was an error submitting the form. Please try again or email us directly at ZFutures@outlook.com')
-    })
-  })
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get elements
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+            
+            // Validate message length (minimum 20 characters)
+            const messageField = form.querySelector('[name="message"]');
+            if (messageField.value.trim().length < 20) {
+                errorMessage.style.display = 'block';
+                errorText.textContent = 'Please provide more details about your challenge (minimum 20 characters).';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-flex';
+            
+            // Hide any previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Collect form data
+            const formData = new FormData(form);
+            
+            // Convert FormData to URL-encoded string
+            const params = new URLSearchParams(formData).toString();
+            
+            // Submit to Google Apps Script
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params,
+                mode: 'no-cors' // Required for Google Apps Script
+            })
+            .then(() => {
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                form.reset();
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                
+                // Optional: Send analytics event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submission', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form'
+                    });
+                }
+            })
+            .catch((error) => {
+                // Show error message
+                errorMessage.style.display = 'block';
+                errorText.textContent = 'There was an error submitting your form. Please try again or email us directly at ZFutures@outlook.com';
+                
+                // Scroll to error message
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                
+                // Log error for debugging
+                console.error('Form submission error:', error);
+            });
+        });
+    }
+});
+
+// Add spin animation for loading spinner
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    @keyframes slideIn {
+        from { 
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);
 </script>
+
+<!-- ============================================ -->
+<!-- END OF FORM CODE -->
+<!-- ============================================ -->
 
         <!-- Contact Info -->
         <div class="contact-info">
