@@ -1200,7 +1200,7 @@
 
                 <div class="error-box" id="error-message">
                     <h3>Submission error</h3>
-                    <p id="error-text">Something went wrong. Please try again or email ZFutures@outlook.com</p>
+                    <p id="error-text">Something went wrong. Please try again or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1bba7949594938492a18e94958d8e8e8acf828e8c">[email&#160;protected]</a></p>
                 </div>
 
                 <form id="zfutures-form" class="form-stack">
@@ -1310,7 +1310,7 @@
 
                 <div class="contact-meta">
                     <h3>Direct Contact</h3>
-                    <p><strong>Email:</strong> ZFutures@outlook.com</p>
+                    <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fca6ba8988898e998fbc93898890939397d29f9391">[email&#160;protected]</a></p>
                     <p><strong>Headquarters:</strong> Lilongwe, Malawi</p>
                     <p style="margin-top:1rem; color: var(--white-40); font-size:0.875rem;">We respond to all inquiries within 24 hours.</p>
                 </div>
@@ -1333,7 +1333,7 @@
                 <a href="https://facebook.com/ZFuturesGlobal" target="_blank" rel="noopener" class="social">
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
-                <a href="mailto:ZFutures@outlook.com" class="social">
+                <a href="/cdn-cgi/l/email-protection#bee4f8cbcacbccdbcdfed1cbcad2d1d1d590ddd1d3" class="social">
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 </a>
             </div>
@@ -1379,104 +1379,50 @@
 <script src="blog-posts.js"></script>
 <script src="insights.js"></script>
 <script>
-    // Page navigation
-    function showPage(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        const page = document.getElementById(id);
-        if (page) { page.classList.add('active'); window.scrollTo(0,0); }
-        document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
-            a.classList.toggle('active', a.dataset.page === id);
-        });
-    }
-
-    // Footer year
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // Blog rendering (uses external blog-posts.js if available)
-    function renderBlog() {
-        const container = document.getElementById('blogPostsList');
+    // Blog rendering - field names match blog-posts.js (gradient, icon, url, readTime)
+    function loadBlogPosts() {
+        const container = document.getElementById("blogPostsList");
         if (!container) return;
-        if (typeof blogPosts !== 'undefined' && blogPosts.length) {
-            container.innerHTML = blogPosts.map(post => `
-                <div class="blog-card">
-                    <div class="blog-card-top" style="background: ${post.color || 'linear-gradient(135deg,#12131E,#1A1C2E)'};">${post.emoji || '📄'}</div>
-                    <div class="blog-card-body">
-                        <div class="blog-meta"><span class="blog-cat">${post.category}</span><span>·</span><span>${post.date}</span></div>
-                        <h3>${post.title}</h3>
-                        <p class="blog-excerpt">${post.excerpt}</p>
-                        <span class="read-more">Read more →</span>
-                    </div>
-                </div>
-            `).join('');
-        } else {
-            container.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--white-40); padding:4rem 0; font-size:1rem; font-weight:300;">Blog posts coming soon.</div>`;
+        if (typeof blogPosts === "undefined" || !blogPosts.length) {
+            container.innerHTML = "<div style='grid-column:1/-1; text-align:center; color:rgba(255,255,255,0.4); padding:4rem 0; font-size:1rem;'>Blog posts coming soon.</div>";
+            return;
         }
+        container.innerHTML = blogPosts.map(post => `
+            <div class="blog-card" onclick="window.open("${post.url}", '_blank')">
+                <div class="blog-card-top" style="background: ${post.gradient};">${post.icon}</div>
+                <div class="blog-card-body">
+                    <div class="blog-meta"><span class="blog-cat">${post.category}</span><span>·</span><span>${post.readTime}</span><span>·</span><span>${post.date}</span></div>
+                    <h3>${post.title}</h3>
+                    <p class="blog-excerpt">${post.excerpt}</p>
+                    <span class="read-more">Read article →</span>
+                </div>
+            </div>
+        `).join("");
     }
 
-    // Insights rendering
-    function renderInsights() {
-        const container = document.getElementById('insightsList');
+    // Insights rendering - field names match insights.js (gradient, icon, type, available, url)
+    function loadInsights() {
+        const container = document.getElementById("insightsList");
         if (!container) return;
-        if (typeof insights !== 'undefined' && insights.length) {
-            container.innerHTML = insights.map(item => `
-                <div class="insight-card">
-                    <div class="insight-top" style="background: ${item.color || 'linear-gradient(135deg,#12131E,#1A1C2E)'};">${item.emoji || '📊'}</div>
-                    <div class="insight-body">
-                        <div class="insight-tag">${item.tag}</div>
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
-                        <span class="insight-link">Read insight →</span>
-                    </div>
-                </div>
-            `).join('');
-        } else {
-            container.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--white-40); padding:4rem 0; font-size:1rem; font-weight:300;">Research & insights coming soon.</div>`;
+        if (typeof insights === "undefined" || !insights.length) {
+            container.innerHTML = "<div style='grid-column:1/-1; text-align:center; color:rgba(255,255,255,0.4); padding:4rem 0; font-size:1rem;'>Research & insights coming soon.</div>";
+            return;
         }
-    }
-
-    renderBlog();
-    renderInsights();
-
-    // Contact form
-    const form = document.getElementById('zfutures-form');
-    if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const btnText = document.getElementById('btn-text');
-            const btnLoading = document.getElementById('btn-loading');
-            const successMsg = document.getElementById('success-message');
-            const errorMsg = document.getElementById('error-message');
-
-            btn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline';
-            successMsg.style.display = 'none';
-            errorMsg.style.display = 'none';
-
-            const data = Object.fromEntries(new FormData(form).entries());
-
-            try {
-                const res = await fetch('https://formspree.io/f/xpwzgowd', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (res.ok) {
-                    successMsg.style.display = 'block';
-                    form.reset();
-                } else {
-                    throw new Error('Server error');
-                }
-            } catch (err) {
-                errorMsg.style.display = 'block';
-            } finally {
-                btn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-            }
-        });
+        container.innerHTML = insights.map(insight => `
+            <div class="insight-card">
+                <div class="insight-top" style="background: ${insight.gradient};">${insight.icon}</div>
+                <div class="insight-body">
+                    <div class="insight-tag">${insight.type}</div>
+                    <h3>${insight.title}</h3>
+                    <p>${insight.description}</p>
+                    <a class="insight-link" ${insight.available ? `href="${insight.url}" target="_blank"` : 'style="color:rgba(255,255,255,0.4); cursor:not-allowed;"'}>
+                        ${insight.available ? "Download →" : "Coming Soon"}
+                    </a>
+                </div>
+            </div>
+        `).join("");
     }
 </script>
+<script src="main.js"></script>
 </body>
 </html>
